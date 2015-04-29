@@ -1,0 +1,16 @@
+# Object files
+*.o
+
+# Share library files
+*.so
+
+# Makefiles
+Makefile
+
+# Vim Swap files
+*.swp
+
+# CMake files
+CMakeFiles
+CMakeCache.txt
+*.cmake
