@@ -51,10 +51,10 @@ Pty_Open(ClientData clientData,
 
   numArgsLeft = objc - argNum;
 
-	if (numArgsLeft != 0) {
-		Tcl_WrongNumArgs(interp, 1, objv, "?options?");
-		return TCL_ERROR;
-	}
+  if (numArgsLeft != 0) {
+    Tcl_WrongNumArgs(interp, 1, objv, "?options?");
+    return TCL_ERROR;
+  }
 
   masterfd = posix_openpt(O_RDWR | O_NOCTTY);
 
@@ -117,15 +117,15 @@ Pty_Open(ClientData clientData,
 int
 Pty_Init(Tcl_Interp *interp)
 {
-	Tcl_CreateObjCommand(interp,
+  Tcl_CreateObjCommand(interp,
                        "pty::open",
                        Pty_Open,
                        (ClientData) NULL,
                        (Tcl_CmdDeleteProc *) NULL);
 
-	if ( Tcl_PkgProvide(interp, "pty", "0.1") != TCL_OK ) {
-		return TCL_ERROR;
-	}
+  if ( Tcl_PkgProvide(interp, "pty", "0.1") != TCL_OK ) {
+    return TCL_ERROR;
+  }
 
-	return TCL_OK;
+  return TCL_OK;
 }
