@@ -6,8 +6,8 @@ set ThisScriptDir [file dirname [info script]]
 load [file join $ThisScriptDir .. libpty-tcl[info sharedlibextension]]
 
 
-test openpty-1 {Check can read/w through pseudo tty} -setup {
-  lassign [openpty] masterChan slaveName
+test open-1 {Check can read/w through pseudo tty} -setup {
+  lassign [pty::open] masterChan slaveName
   set slaveChan [open $slaveName r+]
   set chatLog [list]
 } -body {
@@ -23,8 +23,8 @@ test openpty-1 {Check can read/w through pseudo tty} -setup {
 } -result {{m2s {message from master}} {s2m {message from slave}}}
 
 
-test openpty-2 {Check will accept -nogrant option} -setup {
-  lassign [openpty -nogrant] masterChan slaveName
+test open-2 {Check will accept -nogrant option} -setup {
+  lassign [pty::open -nogrant] masterChan slaveName
   set slaveChan [open $slaveName r+]
   set chatLog [list]
 } -body {
@@ -40,18 +40,16 @@ test openpty-2 {Check will accept -nogrant option} -setup {
 } -result {{m2s {message from master}} {s2m {message from slave}}}
 
 
-test openpty-3 {Check will return an error if invalid option passed} {
-  catch {lassign [openpty -fred]} result
+test open-3 {Check will return an error if invalid option passed} {
+  catch {lassign [pty::open -fred]} result
   set result
 } {bad option "-fred": must be -nogrant}
 
 
-test openpty-4 {Check will return an error too many arguments passed} {
-  catch {lassign [openpty fred]} result
+test open-4 {Check will return an error too many arguments passed} {
+  catch {lassign [pty::open fred]} result
   set result
-} {wrong # args: should be "openpty ?options?"}
-
-
+} {wrong # args: should be "pty::open ?options?"}
 
 
 cleanupTests

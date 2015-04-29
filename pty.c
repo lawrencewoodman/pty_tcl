@@ -16,10 +16,10 @@
 
 
 static int
-OpenPty(ClientData clientData,
-        Tcl_Interp *interp,
-        int objc,
-        Tcl_Obj *CONST objv[])
+Pty_Open(ClientData clientData,
+         Tcl_Interp *interp,
+         int objc,
+         Tcl_Obj *CONST objv[])
 {
   intptr_t masterfd;
   char slaveName[256];
@@ -118,8 +118,8 @@ int
 Pty_Init(Tcl_Interp *interp)
 {
 	Tcl_CreateObjCommand(interp,
-                       "openpty",
-                       OpenPty,
+                       "pty::open",
+                       Pty_Open,
                        (ClientData) NULL,
                        (Tcl_CmdDeleteProc *) NULL);
 
