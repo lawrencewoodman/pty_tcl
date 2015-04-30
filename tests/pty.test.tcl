@@ -1,7 +1,7 @@
 package require tcltest
 namespace import tcltest::*
 
-# Add module dir to tm paths
+# Load libpty-tcl
 set ThisScriptDir [file dirname [info script]]
 load [file join $ThisScriptDir .. libpty-tcl[info sharedlibextension]]
 
