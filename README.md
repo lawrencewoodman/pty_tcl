@@ -54,7 +54,7 @@ Then compile the project:
 
     $ make
 
-To install the package to a sensible location run the following as root, make a note of the directories installed to in case of problems:
+To install the package to a sensible location run the following as root.  Make a note of the directories installed to in case of problems; these locations locations are also recorded in `install_manifest.txt`:
 
     $ make install
 
